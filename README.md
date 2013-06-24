@@ -1,9 +1,9 @@
 AccessGrinder
 =============
 
-Author: geoff.jones@cyberis.co.uk
-Copyright: Cyberis Limited 2013
-License: GPLv3 (See LICENSE)
+* Author: geoff.jones@cyberis.co.uk
+* Copyright: Cyberis Limited 2013
+* License: GPLv3 (See LICENSE)
 
 A Perl script to test access controls on large web applications.
 
@@ -15,8 +15,12 @@ Usage has been intentionally kept quite simple. Before running the tool, it is i
 
 At this point, record active session cookies from each account privilege level you wish to test. The script can take as many cookies as you like, allowing you to test basic applications with one or two user roles, or even complex sites with a large number of privilege levels. Specify each on the command line with the '-c' (--cookie) flag.
 
+This script will only test basic access to a given resource, not more complex access control issues such as varying page functionality per user role (though the returned size from accessgrinder.pl may be an indication) or POST based form submissions, though it's a great quick check to profile a large application. Once you've identified that a user can access a given URL, that's when the more interesting manual testing can begin.
+
 Finally, remove any logout URL's from your input file (or at least place it at the end), to ensure the test isn't compromised by sessions being destroyed during a run.
 
+Usage
+-----
 The full usage of the script is shown below:
 
 ```
@@ -29,8 +33,8 @@ If the application returns 'unauthorised' messages in 200 responses, be sure to 
 ./accessgrinder.pl -f urls.txt -c 'JSESSIONID=89EB1671D756C3CEA933F0491AEC199A' --string '(Unauthori[sz]ed Access|Please login)'
 ```
 
-This script will only test basic access to a given resource, not more complex access control issues such as varying page functionality per user role (though the returned size from accessgrinder.pl may be an indication) or POST based form submissions, though it's a great quick check to profile a large application. Once you've identified that a user can access a given URL, that's when the more interesting manual testing can begin.
-
+Dependencies
+------------
 If you want to install the CPAN dependencies yourself, you'll need *Term::ANSIColor, Getopt::Long, LWP::UserAgent and LWP::Protocol::https*.
 
 Issues
