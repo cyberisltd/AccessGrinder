@@ -2,7 +2,8 @@ AccessGrinder
 =============
 
 Author: geoff.jones@cyberis.co.uk
-Copyright Cyberis Limited 2013
+Copyright: Cyberis Limited 2013
+License: GPLv3 (See LICENSE)
 
 A Perl script to test access controls on large web applications.
 
@@ -18,12 +19,20 @@ Finally, remove any logout URL's from your input file (or at least place it at t
 
 The full usage of the script is shown below:
 
+```
 ./accessgrinder.pl -f <file containing urls> -c 'SESSION=session1' [-c 'SESSION=session2'] [--nocolour] [-v] [--string 'regex to match'] [--insecure] [-d 'delimiter'] [-u 'useragent']
+```
 
 If the application returns 'unauthorised' messages in 200 responses, be sure to set '--string' to detect these instances.
 
+```
 ./accessgrinder.pl -f urls.txt -c 'JSESSIONID=89EB1671D756C3CEA933F0491AEC199A' --string '(Unauthori[sz]ed Access|Please login)'
+```
 
 This script will only test basic access to a given resource, not more complex access control issues such as varying page functionality per user role (though the returned size from accessgrinder.pl may be an indication) or POST based form submissions, though it's a great quick check to profile a large application. Once you've identified that a user can access a given URL, that's when the more interesting manual testing can begin.
 
-If you want to install the CPAN dependencies yourself, you'll need Term::ANSIColor, Getopt::Long, LWP::UserAgent and LWP::Protocol::https.
+If you want to install the CPAN dependencies yourself, you'll need *Term::ANSIColor, Getopt::Long, LWP::UserAgent and LWP::Protocol::https*.
+
+Issues
+------
+Kindly report all issues via https://github.com/cyberisltd/AccessGrinder/issues
